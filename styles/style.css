@@ -110,3 +110,9 @@ label {
         border-radius: 8px;
     }
 }
+#carouselExampleControls {
+    width: 400px;
+}
+.carousel-item {
+    width: 400px;
+}
