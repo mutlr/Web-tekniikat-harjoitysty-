@@ -8,6 +8,9 @@ document.getElementById("FSadd-note").addEventListener("click", function() {
 function makeCard(nameID, textID, checkbox) {
     console.log("Hello");
     let name = document.getElementById(nameID);
+    if (name.value === "") {
+        return;
+    }
     let teksti = document.getElementById(textID);
     let important = document.getElementById(checkbox).checked;
     
@@ -26,7 +29,7 @@ function makeCard(nameID, textID, checkbox) {
     btnBox.append(button);
     btnBox.addEventListener("click", deleteCard);
     
-    let box = createElements("div", "note-box", "");
+    let box = createElements("div", "note-box");
     box.append(boxHeader);
     box.append(text);
     box.append(btnBox);
