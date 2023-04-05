@@ -1,56 +1,42 @@
-document.getElementById("add-Note").addEventListener("click", function() {
-    makeCard("name", "text", "important");
-});
 
-document.getElementById("FSadd-note").addEventListener("click", function() {
-    makeCard("FSname", "FStext", "FSimportant");
-});
-function makeCard(nameID, textID, checkbox) {
-    console.log("Hello");
-    let name = document.getElementById(nameID);
-    if (name.value === "") {
-        return;
-    }
-    let teksti = document.getElementById(textID);
-    let important = document.getElementById(checkbox).checked;
-    
-    
-    let date = new Date();
-    let boxText = `(${name.value}) \t ${date.getUTCDate()}.${date.getUTCMonth()}.${date.getUTCFullYear()} \t ${date.getHours()}:${date.getMinutes()}`;
-    let boxHeader = createElements("div", "note-header", boxText);
-    
-    let text = document.createElement("p");
-    text.className = "note-text";
-    text.textContent = teksti.value;
-    
-    let btnBox = createElements("div", "btn-box");
-    let button = createElements("button", "btn btn-danger", "Delete");
-    button.type = "button";
-    btnBox.append(button);
-    btnBox.addEventListener("click", deleteCard);
-    
-    let box = createElements("div", "note-box");
-    box.append(boxHeader);
-    box.append(text);
-    box.append(btnBox);
-    
-    if (important) {
-        box.style.borderColor = "orange";
-    }
-    
-    document.querySelector(".main").append(box);
-    name.value = "";
-    teksti.value = "";
-    console.log("hi");
-}
 
-function deleteCard(e) {
-    document.querySelector(".main").removeChild(e.target.parentNode.parentNode);
-}
-
-function createElements(type, classname, content) {
-    let element = document.createElement(type);
+function makeElement(elementType, classname, content) {
+    const element = document.createElement(elementType);
     element.className = classname;
     element.textContent = content;
     return element;
 }
+function deleteCard(e) {
+    const target = e.target.parentNode;
+    document.getElementById("card-container").removeChild(target);
+}
+document.getElementById("add").addEventListener("click", () => {
+    const name = document.getElementById("name").value;
+    const description = document.getElementById("description").value;
+    const important = document.getElementById("important").checked;
+    if (name === "" || description === "") {
+        return;
+    }
+    const date = new Date();
+    const dateTime = date.getDay() + "." + date.getMonth() + "." + date.getFullYear() + "\t" + date.getHours() + ":" + date.getMinutes();
+    const cardHeader = makeElement("h3", "card-header", (name + "\t" + dateTime));
+    const cardAuthor = makeElement("div", "card-description", description);
+    const deleteBtn = makeElement("button", "btn btn-danger", "Delete");
+    deleteBtn.type = "button";
+    
+    const card = makeElement("div", "card", "");
+    if (important) {
+        card.style.borderLeftColor = "red";
+    }
+    card.append(cardHeader);
+    card.append(cardAuthor);
+    card.append(deleteBtn);
+    document.getElementById("card-container").append(card);
+    
+    deleteBtn.addEventListener("click", deleteCard);
+
+    document.getElementById("form").reset();
+});
+document.getElementById("clear").addEventListener("click", () => {
+    document.getElementById("form").reset();
+});
