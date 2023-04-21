@@ -2,7 +2,7 @@
 body {
     height: 100%;
     width: 100%;
-    background-color: rgb(194, 166, 132);
+    background-color: #0e7490;
 }
 .main {
     padding-top: 20px;
@@ -71,16 +71,4 @@ label {
     flex-grow: 1;
     padding: 8px 0;
     overflow: auto;
-}
-@media screen and (min-width: 824px) {
-    #card-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-    }
-    .card {
-        width: 400px;
-    }
-    
 }

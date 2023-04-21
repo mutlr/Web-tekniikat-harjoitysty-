@@ -1,0 +1,83 @@
+* {padding: 0; margin: 0;}
+.tictactoe {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    width: 100%;
+    background-color: #0e7490;
+    border-bottom: 4px solid black;
+}
+.header-text {
+    font-size: 100px;
+    font-weight: bolder;
+}
+
+.game-b {
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 150px;
+    border: 1px solid black;
+    font-size: 100px;
+}
+#restartBtn {
+    border: 1px solid black;
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+    align-self: center;
+    background-color: #0e7490;
+}
+
+.winscreen {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    opacity: 80%;
+    background-color: black;
+    width: 100%;
+}
+#newGame {
+    height: max-content;
+    width: 300px;
+    border-radius: 10px;
+    font-size: 50px;
+    color: black;
+    border: 1px solid black;
+}
+.display {
+    display: none;
+}
+.winText {
+    font-size: 100px;
+    color: white;
+}
+@media screen and (min-width: 824px) {
+    #card-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    .card {
+        width: 400px;
+    }
+    
+}
