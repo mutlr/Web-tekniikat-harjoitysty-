@@ -69,15 +69,13 @@
     font-size: 100px;
     color: white;
 }
-@media screen and (min-width: 824px) {
-    #card-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
+@media screen and (max-width: 532px) {
+    .header-text {
+        font-size: 70px;
     }
-    .card {
-        width: 400px;
+    .box {
+        width: 100px;
+        height: 100px;
     }
     
 }

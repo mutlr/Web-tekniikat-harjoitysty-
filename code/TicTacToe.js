@@ -93,7 +93,6 @@ function winner() {
         return true;
     }
     if (!gameboard.includes("")) {
-        console.log("Hei");
         return 1;
     }
     return false;
@@ -114,7 +113,7 @@ function addListener() {
 }
 
 function addToBox(e) {
-        e.target.textContent = currentPlayer.returnMarker();
+    e.target.textContent = currentPlayer.returnMarker();
     gameboard[e.target.dataset.index] = currentPlayer.returnMarker();
     console.log(currentPlayer.returnMarker());
 }
