@@ -26,6 +26,15 @@ function makeBoard() {
             let el = makeElement("div", "box", "");
             el.setAttribute("data-index", index++);
             row.append(el);
+            el.addEventListener("click", (e) => {
+                addToBox(e);
+                const winnerValue = winner(currentPlayer);
+                if (winnerValue === true || winnerValue === 1) {
+                    winnerScreen(winnerValue, currentPlayer);
+                } else {
+                    switchPlayers();
+                }
+            }, {once: true});
         }
         gameContainer.append(row);
     }
@@ -47,7 +56,6 @@ function start() {
     currentPlayer = playerX;
     restart();
     makeBoard();
-    addListener();
     count = 0;
 }
 function winnerScreen(value, player) {
@@ -91,20 +99,6 @@ function winner() {
         return 1;
     }
     return false;
-}
-function addListener() {
-    const boxes = document.querySelectorAll(".box");
-    boxes.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-            addToBox(e);
-            let winnerValue = winner(currentPlayer);
-            if (winnerValue === true || winnerValue === 1) {
-                winnerScreen(winnerValue, currentPlayer);
-            } else {
-                switchPlayers();
-            }
-        }, {once: true});
-    });
 }
 
 function addToBox(e) {
