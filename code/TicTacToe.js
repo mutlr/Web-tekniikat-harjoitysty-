@@ -16,14 +16,7 @@ const playerO = Player("O");
 let count = 0;
 let currentPlayer;
 const gameboard = ["", "", "", "", "", "", "", "", ""];
-init();
 
-function init() {
-    makeBoard();
-    addListener();
-    count = 0;
-
-}
 function makeBoard() {
     let index = 0
     const gameContainer = document.querySelector(".game-container");
@@ -53,11 +46,12 @@ function makeElement (type, classname, text) {
 function start() {
     currentPlayer = playerX;
     restart();
-    init();
+    makeBoard();
+    addListener();
+    count = 0;
 }
 function winnerScreen(value, player) {
     document.querySelector(".winscreen").classList.remove("display");
-    console.log(player);
     if (value === 1) {
         document.querySelector(".tie").classList.remove("display");
     } else {
@@ -75,21 +69,22 @@ function winnerScreen(value, player) {
 
 
 function winner() {
-    if (gameboard[0] === currentPlayer.returnMarker() && gameboard[1] === currentPlayer.returnMarker() && gameboard[2] === currentPlayer.returnMarker()) {
+    const marker = currentPlayer.returnMarker();
+    if (gameboard[0] === marker && gameboard[1] === marker && gameboard[2] === marker) {
         return true;
-    } else if (gameboard[3] === currentPlayer.returnMarker() && gameboard[4] === currentPlayer.returnMarker() && gameboard[5] === currentPlayer.returnMarker()) {
+    } else if (gameboard[3] === marker && gameboard[4] === marker && gameboard[5] === marker) {
         return true;
-    } else if (gameboard[6] === currentPlayer.returnMarker() && gameboard[7] === currentPlayer.returnMarker() && gameboard[8] === currentPlayer.returnMarker()) {
+    } else if (gameboard[6] === marker && gameboard[7] === marker && gameboard[8] === marker) {
         return true;
-    } else if (gameboard[0] === currentPlayer.returnMarker() && gameboard[4] === currentPlayer.returnMarker() && gameboard[8] === currentPlayer.returnMarker()) {
+    } else if (gameboard[0] === marker && gameboard[4] === marker && gameboard[8] === marker) {
         return true;
-    } else if (gameboard[6] === currentPlayer.returnMarker() && gameboard[2] === currentPlayer.returnMarker() && gameboard[4] === currentPlayer.returnMarker()) {
+    } else if (gameboard[6] === marker && gameboard[2] === marker && gameboard[4] === marker) {
         return true;
-    } else if (gameboard[0] === currentPlayer.returnMarker() && gameboard[3] === currentPlayer.returnMarker() && gameboard[6] === currentPlayer.returnMarker()) {
+    } else if (gameboard[0] === marker && gameboard[3] === marker && gameboard[6] === marker) {
         return true;
-    } else if (gameboard[1] === currentPlayer.returnMarker() && gameboard[4] === currentPlayer.returnMarker() && gameboard[7] === currentPlayer.returnMarker()) {
+    } else if (gameboard[1] === marker && gameboard[4] === marker && gameboard[7] === marker) {
         return true;
-    } else if (gameboard[2] === currentPlayer.returnMarker() && gameboard[5] === currentPlayer.returnMarker() && gameboard[8] === currentPlayer.returnMarker()) {
+    } else if (gameboard[2] === marker && gameboard[5] === marker && gameboard[8] === marker) {
         return true;
     }
     if (!gameboard.includes("")) {
@@ -115,7 +110,6 @@ function addListener() {
 function addToBox(e) {
     e.target.textContent = currentPlayer.returnMarker();
     gameboard[e.target.dataset.index] = currentPlayer.returnMarker();
-    console.log(currentPlayer.returnMarker());
 }
 function switchPlayers() {
     if (currentPlayer === playerX) {
